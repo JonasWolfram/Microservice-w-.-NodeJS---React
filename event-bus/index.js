@@ -7,7 +7,11 @@ app.use(bodyParser.json());
 
 app.post("/events", (req, res) => {
   const event = req.body;
+  console.log(
+    `Event Reiceived - Distrubuting Event: <<${req.body.type}>> to Services`
+  );
 
+  // Event are getting distributed to single Services with a Error Catch Methode
   axios.post("http://localhost:4000/events", event).catch((err) => {
     console.log(err.message + " _ Port: 4000 || Posts Server");
   });

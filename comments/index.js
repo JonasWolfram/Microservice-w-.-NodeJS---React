@@ -4,10 +4,12 @@ const { randomBytes } = require("crypto");
 const cors = require("cors");
 const axios = require("axios");
 
+// Basic Set Up for the CommentsServer Service
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+// Empty Object Comments
 const commentsByPostId = {};
 
 app.get("/posts/:id/comments", (req, res) => {
@@ -36,6 +38,7 @@ app.post("/posts/:id/comments", async (req, res) => {
   res.status(201).send(comments);
 });
 
+// Listens to Events from the Event Bus
 app.post("/events", (req, res) => {
   console.log("Event Received", req.body.type);
 
